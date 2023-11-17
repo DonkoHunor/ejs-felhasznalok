@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Felhasználók</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <th>Név</th>
+            <th>Nem</th>
+            <th>Születési dátum</th>
+            <th>Egyenleg</th>
+            <th>Aktivitás</th>
+        </thead>
+        <tbody>
+            <%felhasznalok.forEach((felhasznalo) => {%>
+                <%if(felhasznalo.aktivitas == 'aktív'){%>
+                    <tr>
+                        
+                            <%if(parseInt(felhasznalo.szul_datum.substring(0,4)) < 2000){%>
+                                <td title="kedvezmény"><%= felhasznalo.nev%></td>
+                            <%}else{%>
+                                <td title="nincs kedvezmény"><%= felhasznalo.nev%></td>
+                            <%}%>
+
+                            <%if(felhasznalo.nem == 'férfi'){%>
+                                <td><i class="fa fa-mars"></i></td>
+                            <%}else{%>
+                                <td><i class="fa fa-venus"></i></td>
+                                <%}%>
+
+                        <td><%= felhasznalo.szul_datum%></td>
+                        
+                        <%if(felhasznalo.egyenleg < 0){%>
+                            <td style="color:red"><%= felhasznalo.egyenleg%></td>
+                        <%}else if(felhasznalo.egyenleg > 0){%>
+                            <td style="color:green"><%= felhasznalo.egyenleg%></td>
+                        <%}
+                        else{%>
+                            <td style="color:rgb(0, 132, 255)"><%= felhasznalo.egyenleg%></td>
+                        <%}%>
+
+                        <td><%= felhasznalo.aktivitas%></td>
+                    </tr>
+                <%}})%>
+        </tbody>
+    </table>
+</body>
+</html>
